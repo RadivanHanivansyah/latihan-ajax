@@ -1,3 +1,9 @@
+async function getData(url) {
+    let data = await fetch(url);
+    let semiResult = await data.json();
+    return semiResult;
+}
+
 showData = (data) => {
     const ul = document.querySelector("ul");
     data.forEach((element, index, judulAnime) => {
@@ -18,13 +24,7 @@ showData = (data) => {
     });
 }
 
-async function getData(url) {
-    let data = await fetch(url);
-    let semiResult = await data.json();
-    return semiResult;
-}
-
-async function run() {
+function run() {
     let data = getData("https://api.jikan.moe/v4/anime?limit=20&score=8");
     let finalResult = data.then(response => {
         showData(response.data);
